@@ -1,5 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { LoggerMiddleware } from '../middleware/logger.middleware';
+import { Module } from '@nestjs/common';
 import { UmiService } from './umi.service';
 import { UmiController } from './umi.controller';
 
@@ -7,8 +6,4 @@ import { UmiController } from './umi.controller';
   providers: [UmiService],
   controllers: [UmiController],
 })
-export class ProxyUmiModule implements NestModule {
-  configure(consumer: MiddlewareConsumer): any {
-    consumer.apply(LoggerMiddleware).forRoutes(UmiController);
-  }
-}
+export class ProxyUmiModule {}

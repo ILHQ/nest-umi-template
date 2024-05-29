@@ -61,6 +61,7 @@ package-lock.json
 # dependencies
 out/
 bin/
+*.zip
 assets/node_modules
 assets/npm-debug.log*
 assets/yarn-error.log
