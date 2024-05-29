@@ -1,0 +1,154 @@
+//这个文件不走 css modules，自动被引入，可以写一些全局样式，或者做一些样式覆盖。
+@import '~@/styles/var.less';
+@import '~@/styles/mixin.less';
+@import '~antd/es/style/themes/default.less';
+@import '~antd/dist/antd.less';
+@import '~@/styles/theme.less';
+
+header,
+footer,
+section,
+aside,
+article,
+nav,
+hgroup,
+figure,
+figcaption,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+form,
+p,
+dl,
+dt,
+dd,
+blockquote,
+legend,
+table,
+th,
+td,
+fieldset,
+menu,
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  outline: none;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  box-shadow: 0 0 0 1000px @white inset;
+}
+
+select {
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+}
+
+input[type='password']:focus {
+  box-shadow: 0 0 0 1000px @white inset;
+}
+
+textarea:disabled,
+input:disabled {
+  background: none;
+}
+
+/*行内块元素*/
+input,
+img {
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+  font-size: 14px;
+  outline-style: none;
+  vertical-align: bottom;
+}
+
+img {
+  content: none !important;
+}
+
+/*单选框和复选框的配置*/
+input[type='radio'],
+input[type='checkbox'] {
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  display: none;
+}
+
+input[type='date'] {
+  background: none;
+  outline: none;
+  text-align: right;
+  display: inline-block;
+  font-size: 14px;
+
+  &::-webkit-clear-button {
+    display: none;
+  }
+
+  &::-webkit-inner-spin-button {
+    display: none;
+  }
+
+  &::-webkit-clear-button {
+    display: none;
+  }
+}
+
+textarea {
+  /* 边框清零 */
+  border: none;
+  /* 轮廓线清零 */
+  outline: none;
+  /* 防止文本域被随意拖拽 */
+  resize: none;
+}
+
+html body {
+  color: @fontColor;
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei',
+    'Hiragino Sans GB', 'Heiti SC', 'WenQuanYi Micro Hei', sans-serif !important;
+  font-size: 14px;
+}
+
+a {
+  color: @fontColor;
+  outline: none;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}

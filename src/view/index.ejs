@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <title><%= title %></title>
+    <% if (env === 'development') { %>
+        <script src="<%= routerPrefix %>/assets/dist/@@/devScripts.js"></script>
+    <% } %>
+    <link rel="stylesheet" href="<%= routerPrefix %>/assets/dist/umi.css">
+</head>
+
+<body>
+<div id="root-master"></div>
+<script>
+  window.routerBase = '<%= routerPrefix %>';
+  window.routerPrefix = '<%= routerPrefix %>';
+  window.proxyPrefix = '<%= proxyPrefix %>';
+  window.env = '<%= env %>';
+  window.imgDomain = '<%= imgDomain %>';
+  window.cndDomain = '<%= cndDomain %>';
+</script>
+<script src="<%= routerPrefix %>/assets/dist/umi.js"></script>
+</body>
+</html>
