@@ -23,7 +23,7 @@ export class UmiController {
   constructor(private readonly umiService: UmiService) {}
 
   @Get()
-  @Redirect(envConfig.appPrefix, 302)
+  @Redirect(envConfig.routerPrefix, 302)
   getPath(): void {}
 
   @Get(`/health`)
@@ -43,7 +43,7 @@ export class UmiController {
     }
   }
 
-  @Get(`${envConfig.appPrefix}/assets/dist/*`)
+  @Get(`${envConfig.routerPrefix}/assets/dist/*`)
   proxyAssets(@Req() req: Request, @Res() res: Response): void {
     if (process.env.NODE_ENV !== 'production') {
       const proxy = this.umiService.proxyAssets();
@@ -55,6 +55,7 @@ export class UmiController {
     }
   }
 
+  // 代理
   @All(`${envConfig.proxyPrefix}/spacial-modeling/*`)
   proxySpacialModeling(@Req() req: Request, @Res() res: Response): void {
     const proxy = this.umiService.proxySpacialModeling();
@@ -65,17 +66,7 @@ export class UmiController {
     });
   }
 
-  @All(`${envConfig.proxyPrefix}/set-center/*`)
-  proxySetCenter(@Req() req: Request, @Res() res: Response): void {
-    const proxy = this.umiService.proxySetCenter();
-    proxy(req, res, (result) => {
-      if (result instanceof Error) {
-        throw result;
-      }
-    });
-  }
-
-  @Get(envConfig.appPrefix + '/*')
+  @Get(envConfig.routerPrefix + '*')
   @Render('index')
   getIndex(): object {
     return {

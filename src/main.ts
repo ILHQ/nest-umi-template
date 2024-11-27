@@ -9,13 +9,13 @@ import * as process from 'process';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  // app.useStaticAssets(join(__dirname, '..', 'public'), {
-  //   prefix: `/${envConfig.appPrefix}/public/`,
-  // });
+  app.useStaticAssets(join(__dirname, '..', 'public'), {
+    prefix: `${envConfig.routerPrefix}/public/`,
+  });
 
   if (process.env.NODE_ENV === 'production') {
     app.useStaticAssets(join(__dirname, '../../', 'assets/dist'), {
-      prefix: `/${envConfig.appPrefix}/assets/dist/`,
+      prefix: `${envConfig.routerPrefix}/assets/dist/`,
     });
   }
 

@@ -36,18 +36,4 @@ export class UmiService {
       },
     });
   }
-
-  proxySetCenter(): RequestHandler {
-    return createProxyMiddleware({
-      target: envConfig['set-center'],
-      changeOrigin: true,
-      pathRewrite: { [`^${envConfig.proxyPrefix}/set-center`]: '' },
-      on: {
-        proxyRes: (proxyRes, req, res) => {
-          res.removeHeader('Content-Length');
-          res.setHeader('Transfer-Encoding', 'chunked');
-        },
-      },
-    });
-  }
 }
