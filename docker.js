@@ -2,9 +2,7 @@ const { exec } = require('shelljs');
 const path = require('path');
 
 const pkg = require(path.resolve('package.json'));
+exec(`docker build -t ${pkg.name}:${pkg.version} . --platform linux/amd64`);
 exec(
-  `docker tag ${pkg.name}:${pkg.version} registry.cn-hangzhou.aliyuncs.com/zilu_front/${pkg.name}:${pkg.version}`,
-);
-exec(
-  `docker push registry.cn-hangzhou.aliyuncs.com/zilu_front/${pkg.name}:${pkg.version}`,
+  `docker save -o ${pkg.name}_${pkg.version}.tar ${pkg.name}:${pkg.version}`,
 );

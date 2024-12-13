@@ -14,6 +14,8 @@ import { AllExceptionsFilter } from '../http-exception.filter';
 import envConfig from '../../env';
 import { readFileSync } from 'fs';
 import * as process from 'process';
+const fs = require('fs-extra');
+import * as path from 'path';
 
 const pkg = JSON.parse(readFileSync('./package.json', 'utf-8'));
 
@@ -69,7 +71,33 @@ export class UmiController {
   @Get(envConfig.routerPrefix + '*')
   @Render('index')
   getIndex(): object {
+    let cssHash = '';
+    let jsHash = '';
+    if (process.env.NODE_ENV) {
+      const targetDir = path.join(process.cwd(), './assets/dist');
+      const files = fs.readdirSync(targetDir);
+      const cssFiles = files.filter((file) => file.endsWith('.css'));
+      const jsFiles = files.filter((file) => file.endsWith('.js'));
+      cssFiles.forEach((fileName) => {
+        const match = fileName.match(/.*\.([a-f0-9]+)\.css$/);
+        if (match) {
+          cssHash = '.' + match[1]; // 提取的哈希值
+        } else {
+          console.log('No hash found in:', fileName);
+        }
+      });
+      jsFiles.forEach((fileName) => {
+        const match = fileName.match(/.*\.([a-f0-9]+)\.js$/);
+        if (match) {
+          jsHash = '.' + match[1]; // 提取的哈希值
+        } else {
+          console.log('No hash found in:', fileName);
+        }
+      });
+    }
     return {
+      cssHash,
+      jsHash,
       title: pkg.description,
       routerPrefix: envConfig.routerPrefix,
       env: envConfig.env,

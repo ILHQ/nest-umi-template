@@ -9,8 +9,11 @@
     <title><%= title %></title>
     <% if (env === 'development') { %>
         <script src="<%= routerPrefix %>/assets/dist/@@/devScripts.js"></script>
+        <link rel="stylesheet" href="<%= routerPrefix %>/assets/dist/umi.css">
     <% } %>
-    <link rel="stylesheet" href="<%= routerPrefix %>/assets/dist/umi.css">
+    <% if (env === 'production') { %>
+        <link rel="stylesheet" href="<%= routerPrefix %>/assets/dist/umi<%= cssHash %>.css">
+    <% } %>
 </head>
 
 <body>
@@ -23,6 +26,12 @@
   window.imgDomain = '<%= imgDomain %>';
   window.cndDomain = '<%= cndDomain %>';
 </script>
-<script src="<%= routerPrefix %>/assets/dist/umi.js"></script>
+<% if (env === 'development') { %>
+    <script src="<%= routerPrefix %>/assets/dist/umi.js"></script>
+<% } %>
+<% if (env === 'production') { %>
+
+    <script src="<%= routerPrefix %>/assets/dist/umi<%= jsHash %>.js"></script>
+<% } %>
 </body>
 </html>

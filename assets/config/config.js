@@ -8,6 +8,7 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
+  hash: true,
   layout: false,
   dva: false,
   locale: {
